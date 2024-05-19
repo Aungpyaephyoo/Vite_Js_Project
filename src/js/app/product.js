@@ -68,6 +68,8 @@ export const handleProductGroup = (event) => {
   if (event.target.classList.contains("product-add-cart-btn")) {
     const currentBtn = event.target;
     currentBtn.setAttribute("disabled", true);
+    currentBtn.innerText = "Added";
+
     const currentProductCard = event.target.closest(".product-card");
     const currentProductCardId = parseInt(
       currentProductCard.getAttribute("product-id")
