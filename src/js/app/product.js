@@ -56,6 +56,16 @@ export const createProduct = (product) => {
     product.rating.rate
   );
 
+  const isExistedInCart = cartItemGroup.querySelector(
+    `[cart-product-id='${product.id}']`
+  );
+  if (isExistedInCart) {
+    template
+      .querySelector(".product-add-cart-btn")
+      .setAttribute("disabled", true);
+    template.querySelector(".product-add-cart-btn").innerText = "Added";
+  }
+
   return template;
 };
 
