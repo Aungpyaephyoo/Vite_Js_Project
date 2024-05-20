@@ -1,6 +1,7 @@
 import { products } from "../core/data";
 import {
   cartItemGroup,
+  openDrawer,
   productGroup,
   productTemplate,
 } from "../core/selectors";
@@ -88,10 +89,59 @@ export const handleProductGroup = (event) => {
       (product) => product.id === currentProductCardId
     );
 
-    cartItemGroup.append(createCartItem(currentProduct, 1));
+    const currentProductCardImg =
+      currentProductCard.querySelector(".product-img");
 
-    updateCartItemCount();
-    updateCartTotal();
+    // console.log(currentProductCardImg);
+    console.log(openDrawer.getBoundingClientRect());
+
+    const animateImg = new Image();
+    animateImg.src = currentProductCardImg.src;
+    animateImg.style.position = "fixed";
+    animateImg.style.top =
+      currentProductCardImg.getBoundingClientRect().top + "px";
+    animateImg.style.left =
+      currentProductCardImg.getBoundingClientRect().left + "px";
+    animateImg.style.width =
+      currentProductCardImg.getBoundingClientRect().width + "px";
+    animateImg.style.height =
+      currentProductCardImg.getBoundingClientRect().height + "px";
+    document.body.append(animateImg);
+
+    // console.log(animateImg.getBoundingClientRect());
+
+    const keyframes = [
+      {
+        top: currentProductCardImg.getBoundingClientRect().top + "px",
+
+        left: currentProductCardImg.getBoundingClientRect().left + "px",
+      },
+      {
+        top: openDrawer.querySelector("svg").getBoundingClientRect().top + "px",
+        left:
+          openDrawer.querySelector("svg").getBoundingClientRect().left + "px",
+        height: "0px",
+        width: "0px",
+        transform: "rotate(2turn)",
+      },
+    ];
+    const duration = 500;
+
+    const addToCartAnimation = animateImg.animate(keyframes, duration);
+
+    const handleAnimationFinish = () => {
+      animateImg.remove();
+      openDrawer.classList.add("animate__tada");
+      openDrawer.addEventListener("animationend", () => {
+        openDrawer.classList.remove("animate__tada");
+      });
+      cartItemGroup.append(createCartItem(currentProduct, 1));
+
+      updateCartItemCount();
+      updateCartTotal();
+    };
+    addToCartAnimation.addEventListener("finish", handleAnimationFinish);
+
     // countCartItem();
     // console.log(currentProduct);
   }

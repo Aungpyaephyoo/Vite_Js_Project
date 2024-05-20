@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/shop.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Shop JavaScript Vite Project</title>
   </head>
   <body>
     <main id="app" class="flex flex-col min-h-screen">
@@ -38,12 +38,13 @@
                 <span class="sr-only">Icon description</span>
               </button>
               <button
+                id="openDrawer"
                 data-drawer-target="cart-drawer"
                 data-drawer-show="cart-drawer"
                 data-drawer-placement="right"
                 aria-controls="cart-drawer"
                 type="button"
-                class="text-white relative bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-gray-700 dark:focus:ring-blue-800"
+                class="animate__animated text-white relative bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-gray-700 dark:focus:ring-blue-800"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -151,7 +152,7 @@
           <h4 class="mb-2">Product Categories</h4>
           <div id="categoryGroup" class="flex gap-2 overflow-x-scroll">
             <button
-              class="border cat-btn duration-200 active:scale-75 text-nowrap border-gray-700 px-4 py-1 rounded"
+              class="active border cat-btn duration-200 active:scale-75 text-nowrap border-gray-700 px-4 py-1 rounded"
             >
               All
             </button>
